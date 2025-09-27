@@ -7,6 +7,7 @@ class DecisionTreeID3:
         self.target_class = target_class
         self.data = data
         self.tree = None
+        self.default_prediction = None
 
     def _calculate_entropy(self, data):
         total_samples = len(data)
@@ -93,11 +94,12 @@ class DecisionTreeID3:
         value = sample.get(feature)
 
         if value not in tree[feature]:
-            return None 
+            return self.default_prediction 
             
         return self.predict_sample(sample, tree[feature][value])
 
     def build(self):
+        self.default_prediction = self.data[self.target_class].mode()[0] 
         self.tree = self.build_tree()
         return self
 
