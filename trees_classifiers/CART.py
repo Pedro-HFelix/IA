@@ -99,22 +99,27 @@ class DecisionTreeCART:
             return node
 
         feature = next(iter(node))
+
         value_from_sample = sample.get(feature)
 
-        branch_keys = list(node[feature].keys())
-        key1 = branch_keys[0]
+        branch_key = list(node[feature].keys())[0]
         
-        if "<=" in key1 or ">" in key1:
-            threshold = float(key1.split()[1])
+        if "<=" in branch_key or ">" in branch_key:
+            threshold = float(branch_key.split()[1])
+            
             if value_from_sample <= threshold:
                 key_to_follow = f"<= {threshold}"
             else:
                 key_to_follow = f"> {threshold}"
+            
             return self._traverse_tree(sample, node[feature][key_to_follow])
+        
         else:
-            cat_value = key1.split(" == ")[1] if "==" in key1 else key1.split(" != ")[1]
+            cat_value = branch_key.split(" == ")[1] if "==" in branch_key else branch_key.split(" != ")[1]
+            
             if value_from_sample == cat_value:
                 key_to_follow = f"== {cat_value}"
             else:
                 key_to_follow = f"!= {cat_value}"
+
             return self._traverse_tree(sample, node[feature][key_to_follow])
