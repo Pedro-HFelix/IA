@@ -87,6 +87,8 @@ class DecisionTreeID3:
         return tree
 
     def predict_sample(self, sample, tree):
+
+        print("nova")
         if not isinstance(tree, dict):
             return tree
         
