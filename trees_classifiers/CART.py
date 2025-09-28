@@ -125,3 +125,4 @@ class DecisionTreeCART:
                 return self._traverse_tree(sample, subtree)
 
         return self.data[self.target_class].mode()[0]
+

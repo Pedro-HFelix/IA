@@ -107,3 +107,4 @@ class DecisionTreeID3:
         if self.tree is None:
             raise Exception("The model has not been trained yet")
         return self.predict_sample(sample, self.tree)
+    
