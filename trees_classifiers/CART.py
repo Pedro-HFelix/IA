@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 
 class DecisionTreeCART:
@@ -98,13 +97,13 @@ class DecisionTreeCART:
         if split_type == "numeric":
             left_subset = data[data[best_feature] <= split_value]
             right_subset = data[data[best_feature] > split_value]
-            tree[best_feature][("<= ", split_value)] = self._build_tree(left_subset, remaining_features)
-            tree[best_feature][("> ", split_value)] = self._build_tree(right_subset, remaining_features)
+            tree[best_feature][("<= ", split_value)] = self._build_tree(left_subset, features)
+            tree[best_feature][("> ", split_value)] = self._build_tree(right_subset, features)
         else:  
             left_subset = data[data[best_feature] == split_value]
             right_subset = data[data[best_feature] != split_value]
-            tree[best_feature][("==", split_value)] = self._build_tree(left_subset, remaining_features)
-            tree[best_feature][("!=", split_value)] = self._build_tree(right_subset, remaining_features)
+            tree[best_feature][("==", split_value)] = self._build_tree(left_subset, features)
+            tree[best_feature][("!=", split_value)] = self._build_tree(right_subset, features)
 
         return tree
 

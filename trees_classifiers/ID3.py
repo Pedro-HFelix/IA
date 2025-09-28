@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 
 class DecisionTreeID3:
     def __init__(self, features, target_class, data):
@@ -88,7 +87,6 @@ class DecisionTreeID3:
 
     def predict_sample(self, sample, tree):
 
-        print("nova")
         if not isinstance(tree, dict):
             return tree
         
